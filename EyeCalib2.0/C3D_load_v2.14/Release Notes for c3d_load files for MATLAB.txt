@@ -1,0 +1,50 @@
+Release Notes for c3d_load files for MATLAB
+
+v2.14 (November 29, 2012)
+Fixed an issue with using pre-Dexterit-E 3.1.0 data in KINARM_add_hand_kinematics
+
+v2.13 (October 29 2012)
+Fixed an issue with reading very long parameters.
+
+v2.11 (October 31 2011)
+KINARM_add_hand_Kinematics and KINARM_add_torques did not handle EP correctly (looked for certain KINARM parameters that 
+	are part of calibration for Exo, but are part of xxxx_KINARM for EP).
+One of those m-files also made that assumption that the right and left KINARMs were the same robot type.  That assumption is no longer made.
+
+v2.10 (June 22 2011)
+Added capability to zip_load to pass c3d filename options.
+
+v2.9 (Jan 21 2011)
+#565 - Fixing an issue calculating velocities
+Added zip_load to load 3.0 format files.
+
+c3d_load_(2009-09-14)
+renamed LIMB_readC3D.m to c3d_load_single_file.m
+Updated c3d_load_single_file.m to read new Events and Ranges section in c3d files, allowing up to 65535 events and 65535 ranges.
+Updated c3d_load.m to move Ranges with a "Video Frame..." label into a new Video_Latency field.
+added the following functions:
+c3d_add_Video_Latency.m (this function adds minimum and maximum latencies for video display).
+c3d_filter_dblpass.m (this function double pass filters all analog data)
+demo_c3d_load.m (this function provides a basic demonstration of some of the features of the c3d_load files)
+KINARM_add_hand_kinematics.m (this function adds hand speed and acceleration to the c3d data structure)
+
+V2.7 (Feb 21 2009)
+Fixed LIMB_readC3D.m to be able to read files with > 127 events (255 max now), and in general, with > 127 elements per dimension in any parameter's data (255 max).
+
+V2.6 (Jan 26 2008)
+Fixed LIMB_readC3D.m to files with no analog channels, just parameters.  Changed precision of fread from int16 to uint16 on POINT.FRAMES param
+% to allow trials with > 32767 frames (up to 65535 frames now).
+
+V2.5 (Feb 26 2008)
+Fixed LIMB_readC3D.m to be able to handle parametergroup descriptions longer than 128 characters (up to 255 is now allowed)
+
+V2.4 (Jan. 3, 2008)
+Field names are now forced to be valid using genvarname
+
+V2.1 to 2.3 (Aug. 2007)
+Characters that are disallowed in fieldnames (e.g. -, /, [, ) etc…) are replaced with underscore to create valid fieldnames.
+Parametergroups that do not have a separate DESCRIPTIONS parameter now get one created based on the descriptions of the individual parameters.
+
+V2.0 (July 2007)
+Re-organized structure of function calls to be more intuitive and user-friendly.
+
